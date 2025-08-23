@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio - Partner Andalan Kita</title>
+    <style>
+        /* CSS umum, disesuaikan dengan tema gelap */
+        :root {
+            --primary-color: #0D47A1;
+            --secondary-color: #F44336;
+            --accent-color: #2196F3;
+            --dark-bg: #121212;
+            --dark-card: #1e1e1e;
+            --text-light: #e0e0e0;
+            --text-muted: #ccc;
+            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 2rem 1rem;
+            background-color: var(--dark-card);
+            position: relative;
+        }
+
+        .logo-img {
+            max-width: 250px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--text-light);
+            border-bottom: 2px solid var(--secondary-color);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+            background-color: var(--dark-card);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .profile-section img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .profile-text {
+            flex: 1;
+        }
+
+        .experience-section, .training-section {
+            display: flex;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .experience-details, .training-details {
+            flex: 1;
+            background-color: var(--dark-card);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .experience-details h3, .training-details h3 {
+            color: var(--accent-color);
+        }
+
+        .experience-details ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .experience-details li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Penyesuaian tata letak untuk pengalaman pendiri */
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .experience-box {
+            background-color: var(--dark-card);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            display: flex;
+            flex-direction: column;
+        }
+        .experience-box h4 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-top: 0;
+        }
+        .experience-box p {
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+        .experience-box ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-top: 1rem;
+        }
+        .experience-box ul li {
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+        }
+        .experience-box:first-child {
+            grid-column: span 1;
+        }
+        @media (min-width: 768px) {
+            .experience-box:first-child {
+                grid-column: span 2;
+            }
+        }
+        @media (min-width: 1024px) {
+            .experience-box:first-child {
+                grid-column: span 2;
+            }
+        }
+
+        .client-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .client-item {
+            background-color: var(--dark-card);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .client-item h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+
+        .client-item p {
+            margin: 0.5rem 0 0;
+            color: var(--text-muted);
+        }
+
+        .back-button {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            text-decoration: none;
+            color: var(--text-light);
+            background-color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #0B3A8F;
+        }
+
+        @media (max-width: 768px) {
+            .profile-section {
+                flex-direction: column;
+            }
+            .profile-section img {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        /* Styling for the slider */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            margin: 2rem auto;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .certificate-item {
+            flex: 0 0 100%; /* Default to one item per view on small screens */
+            box-sizing: border-box;
+            background-color: var(--dark-card);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+
+        .certificate-item img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+        }
+        .certificate-item h4 {
+            color: var(--accent-color);
+            margin-top: 0;
+        }
+
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 1rem;
+            cursor: pointer;
+            z-index: 100;
+            border-radius: 50%;
+            font-size: 1.5rem;
+        }
+
+        .prev-button {
+            left: 10px;
+        }
+
+        .next-button {
+            right: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .certificate-item {
+                flex: 0 0 calc(50% - 1rem); /* 2 items per view on medium screens */
+            }
+            .certificate-item:not(:last-child) {
+                margin-right: 2rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .certificate-item {
+                flex: 0 0 calc(33.333% - 1rem); /* 3 items per view on large screens */
+            }
+            .certificate-item:not(:last-child) {
+                margin-right: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="back-button">← Kembali</a>
+        <img src="logo.png" alt="Partner Andalan Kita Logo" class="logo-img">
+        <div class="section-header">
+            <h2>PORTOFOLIO</h2>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <section class="section">
+            <div class="profile-section">
+                <img src="tiara-riyanti.jpg" alt="Tiara Riyanti">
+                <div class="profile-text">
+                    <h3>Profil</h3>
+                    <p><strong>Partner Andalan Kita</strong> merupakan Perseroan Perorangan yang didirikan oleh Tiara Riyanti pada tahun 2024. Partner Andalan Kita adalah konsultan legalitas, perizinan dan sertifikasi khusus kesehatan, farmasi dan medis yang berlokasi di Depok dengan jaminan harga termurah. Partner Andalan Kita berkomitmen untuk membantu UMKM dalam proses legalitas, perizinan dan sertifikasi berusaha di Indonesia, dengan memprioritaskan kemudahan klien mulai dari pengumpulan dokumen yang dibutuhkan hingga penyelesaian alur kerja.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <h2>Pengalaman Pendiri</h2>
+            </div>
+            <div class="experience-grid">
+                <div class="experience-box">
+                    <h4>Kepala Bagian</h4>
+                    <p>PT Global Konsultan Niaga (2022 s/d 2024)</p>
+                    <ul>
+                        <li>Memastikan setiap proses yang berjalan dilaksanakan oleh tim terselesaikan.</li>
+                        <li>Memastikan dokumen perizinan/sertifikasi usaha seperti (IDAK, PBF, Klinik, Laboratorium, Apotek, Toko Obat, CDAKB, CDOB, dan Pelaporan e-report Alat Kesehatan) terselesaikan sesuai jadwal.</li>
+                        <li>Melaporkan proses terkait perizinan kepada client.</li>
+                        <li>Mendampingi klien mulai dari pemenuhan persyaratan, visitasi instansi terkait, pemenuhan evaluasi sampai dengan izin terbit.</li>
+                        <li>200+ Perizinan dan Sertifikasi yang telah diterbitkan bersama tim.</li>
+                    </ul>
+                </div>
+                <div class="experience-box">
+                    <h4>Penanggung Jawab Teknis</h4>
+                    <p>PT Inti Andalan Nusantara (2020 s/d 2021)</p>
+                </div>
+                <div class="experience-box">
+                    <h4>Penanggung Jawab Teknis</h4>
+                    <p>PT Damarus Panen Utama (2018 s/d 2019)</p>
+                </div>
+                <div class="experience-box">
+                    <h4>Sistem Support</h4>
+                    <p>PT Buana Varia Komputama (2018 s/d 2017)</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <div class="section-header">
+                <h2>Sertifikasi & Pelatihan Pendiri</h2>
+            </div>
+            <div class="slider-container">
+                <div class="slider-wrapper">
+                    <div class="certificate-item slide">
+                        <img src="1000780891.jpg" alt="Sertifikat P3H Halal">
+                        <h4>Sertifikat P3H Halal (2024)</h4>
+                    </div>
+                    <div class="certificate-item slide">
+                        <img src="1000780889.jpg" alt="Sertifikat Pelatihan CDAKB">
+                        <h4>Sertifikat Pelatihan CDAKB (2023)</h4>
+                    </div>
+                    <div class="certificate-item slide">
+                        <img src="1000780885.jpg" alt="Sertifikat Internal Audit CDAKB">
+                        <h4>Sertifikat Internal Audit CDAKB (2021)</h4>
+                    </div>
+                    <div class="certificate-item slide">
+                        <img src="1000780883.jpg" alt="Surat Keterangan Dinas Kesehatan Banten">
+                        <h4>Surat Keterangan Dinkes Banten (2019)</h4>
+                    </div>
+                    <div class="certificate-item slide">
+                        <img src="1000780887.jpg" alt="Daftar Keterangan Penanggung Jawab Teknis">
+                        <h4>Daftar Penanggung Jawab Teknis (2019)</h4>
+                    </div>
+                </div>
+                <button class="slider-button prev-button">&#10094;</button>
+                <button class="slider-button next-button">&#10095;</button>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <h2>DAFTAR KLIEN 2025</h2>
+            </div>
+            <div class="client-list">
+                <div class="client-item">
+                    <h3>01 Pendirian PT Tekno Renjana Aksata</h3>
+                    <p>Kota Jakarta Utara - Selesai (04 Februari 2025)</p>
+                </div>
+                <div class="client-item">
+                    <h3>02 Pendirian PT Agromina Biotech International</h3>
+                    <p>Kota Depok - Selesai (08 April 2025)</p>
+                </div>
+                <div class="client-item">
+                    <h3>03 Pendirian CV Bonbon Speed Racing Concept</h3>
+                    <p>Kabupaten Majalengka - Selesai (29 April 2025)</p>
+                </div>
+                <div class="client-item">
+                    <h3>04 Paket PT+IDAK+CDAKB - PT Prisma Tekno Perkasa</h3>
+                    <p>Kota Depok - Sedang Proses</p>
+                </div>
+                <div class="client-item">
+                    <h3>05 Paket PT+IDAK+CDAKB - PT Inara Gema Internusa</h3>
+                    <p>Kota Depok - Sedang Proses</p>
+                </div>
+                <div class="client-item">
+                    <h3>06 Paket PT+IDAK+CDAKB - PT Abyakta Dakara Swastika</h3>
+                    <p>Kota Jakarta Utara - Sedang Proses</p>
+                </div>
+                <div class="client-item">
+                    <h3>07 Perubahan IDAK - PT Ayazkamed Dua Putera</h3>
+                    <p>Kabupaten Banjar - Selesai (26 Mei 2025)</p>
+                </div>
+                <div class="client-item">
+                    <h3>08 Perizinan Apotek Antasena Farma</h3>
+                    <p>Kabupaten Bogor - Sedang Proses</p>
+                </div>
+                <div class="client-item">
+                    <h3>09 Pendirian PT Seva Vidya Parama</h3>
+                    <p>Kota Jakarta Utara - Selesai (11 Juli 2025)</p>
+                </div>
+                <div class="client-item">
+                    <h3>10 Toko Alkes - PT Nusa Care Mandiri</h3>
+                    <p>Kota Bogor - Sedang Proses</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <h2>DAFTAR KLIEN 2024</h2>
+            </div>
+            <div class="client-list">
+                <div class="client-item">
+                    <h3>01 IDAK - PT Medika Nutrimed Asadtek</h3>
+                    <p>Kota Banjarmasin - Selesai (18 Juli 2023)</p>
+                </div>
+                <div class="client-item">
+                    <h3>02 Audit Internal PBF - PT Green Innovation Sejati</h3>
+                    <p>Kota Tangerang - Selesai (23 September 2024)</p>
+                </div>
+                <div class="client-item">
+                    <h3>03 Praktek Dokter Mandiri - dr. Indah Ariyanti</h3>
+                    <p>Kota Jakarta Timur - Selesai (24 September 2024)</p>
+                </div>
+                <div class="client-item">
+                    <h3>04 Perubahan RUPS - PT Senarah Cahaya Mulia</h3>
+                    <p>Kota Jakarta Timur - Selesai (20 September 2024)</p>
+                </div>
+                <div class="client-item">
+                    <h3>05 Sertifikasi Halal Regular - Edisan Garden Resto</h3>
+                    <p>Kota Depok - Selesai (21 November 2024)</p>
+                </div>
+                <div class="client-item">
+                    <h3>06 Paket PT + Klinik - Klinik Nara</h3>
+                    <p>Kota Depok - Hold (Owner)</p>
+                </div>
+                <div class="client-item">
+                    <h3>07 Perizinan Apotek Gama Pratama</h3>
+                    <p>Kota Jakarta Timur - Selesai (30 Desember 2024)</p>
+                </div>
+                <div class="client-item">
+                    <h3>08 IDAK - PT Mandika Atus Gratia</h3>
+                    <p>Kota Bengkulu - Selesai (22 November 2024)</p>
+                </div>
+                <div class="client-item">
+                    <h3>09 Perizinan Klinik Well</h3>
+                    <p>Kota Jakarta Selatan - Hold (Owner)</p>
+                </div>
+                <div class="client-item">
+                    <h3>10 IDAK - PT Jagadita Guna Medika</h3>
+                    <p>Kota Depok - Selesai (24 Januari 2025)</p>
+                </div>
+                <div class="client-item">
+                    <h3>11 CDAKB - PT Mandika Atus Gratia</h3>
+                    <p>Kota Bengkulu - Selesai (02 Mei 2025)</p>
+                </div>
+                <div class="client-item">
+                    <h3>12 Akta PKWT - PT Jagadita Guna Medika</h3>
+                    <p>Kota Depok - Selesai (10 Desember 2024)</p>
+                </div>
+            </div>
+        </section>
+        
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sliderWrapper = document.querySelector('.slider-wrapper');
+            const slides = document.querySelectorAll('.certificate-item');
+            const prevButton = document.querySelector('.prev-button');
+            const nextButton = document.querySelector('.next-button');
+
+            let slideIndex = 0;
+
+            function updateSlider() {
+                const slideWidth = slides[0].offsetWidth + (window.innerWidth >= 768 ? 32 : 0); // 32px is the gap
+                sliderWrapper.style.transform = `translateX(-${slideIndex * slideWidth}px)`;
+            }
+
+            function moveSlide(direction) {
+                const totalSlides = slides.length;
+                if (direction === 'next') {
+                    slideIndex = (slideIndex + 1) % totalSlides;
+                } else {
+                    slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
+                }
+                updateSlider();
+            }
+
+            prevButton.addEventListener('click', () => {
+                moveSlide('prev');
+            });
+
+            nextButton.addEventListener('click', () => {
+                moveSlide('next');
+            });
+
+            // Handle window resize to adjust slide width
+            window.addEventListener('resize', updateSlider);
+
+            // Initial update
+            updateSlider();
+        });
+    </script>
+</body>
+</html>
+
